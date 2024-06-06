@@ -1,5 +1,10 @@
 {
   "item.ll.zircon": "Zircon",
   "item.ll.raw_zircon": "Raw zircon",
+
+  "block.ll.zircon_block": "Block of zircon",
+  "block.ll.zircon_ore": "Zircon ore",
+  "block.ll.deepslate_zircon_ore": "Deepslate zircon ore",
+
   "itemGroup.lltab": "Custom Items"
 }

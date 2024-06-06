@@ -1,6 +1,7 @@
 package net.luka.ll;
 //he he he
 import com.mojang.logging.LogUtils;
+import net.luka.ll.block.ModBlocks;
 import net.luka.ll.item.ModItems;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -25,6 +26,7 @@ public class Ll
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         ModItems.register(modEventBus);
+        ModBlocks.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
 
