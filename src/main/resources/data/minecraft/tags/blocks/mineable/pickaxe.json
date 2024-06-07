@@ -3,6 +3,8 @@
   "values": [
     "ll:zircon_ore",
     "ll:zircon_block",
-    "ll:deepslate_zircon_ore"
+    "ll:deepslate_zircon_ore",
+    "ll:stalinium_ore",
+    "ll:stalinium_block"
   ]
 }

@@ -15,6 +15,10 @@ public class ModItems {
 
     public static final RegistryObject<Item> stalinium = ITEMS.register("stalinium",
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.Custom_tab)));
+    public static final RegistryObject<Item> raw_stalinium = ITEMS.register("raw_stalinium",
+            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.Custom_tab)));
+
+
 
     public static final RegistryObject<Item> zircon = ITEMS.register("zircon",
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.Custom_tab)));

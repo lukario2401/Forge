@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-
+    "ll:stalinium_ore",
+    "ll:stalinium_block"
   ]
 }

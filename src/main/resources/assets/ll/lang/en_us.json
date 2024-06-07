@@ -1,11 +1,13 @@
 {
   "item.ll.zircon": "Zircon",
-  "item.ll.stalinium": "Stalinium",
   "item.ll.raw_zircon": "Raw zircon",
-  "item.ll.reichstell": "Reichs stell",
+  "item.ll.stalinium": "Stalinium",
+  "item.ll.raw_stalinium": "raw_stalinium",
 
   "block.ll.zircon_block": "Block of zircon",
   "block.ll.zircon_ore": "Zircon ore",
+  "block.ll.stalinium_block": "Block of Stalinium",
+  "block.ll.stalinium_ore": "Stalinium ore",
   "block.ll.deepslate_zircon_ore": "Deepslate zircon ore",
 
   "itemGroup.lltab": "Custom Items"
