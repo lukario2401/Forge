@@ -13,9 +13,12 @@ public class ModItems {
     public static final DeferredRegister<Item> ITEMS =
             DeferredRegister.create(ForgeRegistries.ITEMS, Ll.MOD_ID);
 
+    public static final RegistryObject<Item> stalinium = ITEMS.register("stalinium",
+            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.Custom_tab)));
 
     public static final RegistryObject<Item> zircon = ITEMS.register("zircon",
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.Custom_tab)));
+
         public static final RegistryObject<Item> raw_zircon = ITEMS.register("raw_zircon",
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.Custom_tab)));
 
