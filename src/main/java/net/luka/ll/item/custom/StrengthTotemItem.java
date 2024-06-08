@@ -26,4 +26,3 @@ import net.minecraft.world.level.Level;
         return super.use(level, player, hand);
     }
 }
-
