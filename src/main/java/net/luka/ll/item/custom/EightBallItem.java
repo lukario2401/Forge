@@ -22,7 +22,7 @@ public class EightBallItem extends Item {
             int random = getRandomNumber();
 
             if(random == 10){
-                player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 200, 1));
+                player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 600, 2));
             }
             player.sendSystemMessage(Component.literal("your number is: "+ random));
 

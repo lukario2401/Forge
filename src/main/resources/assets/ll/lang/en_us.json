@@ -1,9 +1,11 @@
 {
   "item.ll.eight_ball": "Eight ball",
+  "item.ll.strength_totem": "Strength totem",
   "item.ll.zircon": "Zircon",
+  "item.ll.zircon_sword": "Zircon sword",
   "item.ll.raw_zircon": "Raw zircon",
   "item.ll.stalinium": "Stalinium",
-  "item.ll.raw_stalinium": "raw_stalinium",
+  "item.ll.raw_stalinium": "Raw stalinium",
 
   "block.ll.zircon_block": "Block of zircon",
   "block.ll.zircon_ore": "Zircon ore",
