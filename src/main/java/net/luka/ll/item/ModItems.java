@@ -1,6 +1,7 @@
 package net.luka.ll.item;
 
 import net.luka.ll.Ll;
+import net.luka.ll.item.custom.DashItem;
 import net.luka.ll.item.custom.EightBallItem;
 import net.luka.ll.item.custom.StrengthTotemItem;
 import net.minecraft.world.item.*;
@@ -26,7 +27,8 @@ public class ModItems {
         () -> Ingredient.of(Items.NETHERITE_INGOT)  // Repair ingredient
         );
 
-
+    public static final RegistryObject<Item> DASH = ITEMS.register("dash",
+    () -> new DashItem(new Item.Properties().tab(ModCreativeModeTab.Custom_tab).stacksTo(1)));
 
     public static final RegistryObject<Item> STRENGTH_TOTEM = ITEMS.register("strength_totem",
     () -> new StrengthTotemItem(new Item.Properties().tab(ModCreativeModeTab.Custom_tab).stacksTo(1)));
