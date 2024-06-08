@@ -11,30 +11,19 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 
-public class EightBallItem extends Item {
+    public class StrengthTotemItem extends Item {
 
-    public EightBallItem(Properties properties) {
+    public StrengthTotemItem(Properties properties) {
         super(properties);
     }
 
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
-        if(!level.isClientSide() && hand == InteractionHand.MAIN_HAND){
-            //output random
-//            player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 200, 0));
-            outPutRandomNumber(player);
-            player.getCooldowns().addCooldown(this,2);
+        if(!level.isClientSide()){
+            player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 200, 1));
+             player.getCooldowns().addCooldown(this,400);
         }
-
         return super.use(level, player, hand);
-    }
-
-    private void outPutRandomNumber(Player player){
-        player.sendSystemMessage(Component.literal("your number is: "+ getRandomNumber()));
-    }
-
-    private int getRandomNumber(){
-        return RandomSource.createNewThreadLocalInstance().nextInt(10);
     }
 }
 
