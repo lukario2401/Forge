@@ -1,5 +1,7 @@
 package net.luka.ll.item.custom;
 
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.level.Level;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -40,49 +42,32 @@ public class Katana extends Item {
         return super.use(level, player, hand);
     }
 
-
-    private void handleLeftClick(Player player) {
-        // Check if the player is holding a Katana in their main hand
-        ItemStack mainHandItem = player.getItemInHand(InteractionHand.MAIN_HAND);
-        if (!(mainHandItem.getItem() instanceof Katana)) {
-            return; // Exit if the player is not holding a Katana
+    @SubscribeEvent
+    public void onLeftClick(PlayerInteractEvent.LeftClickEmpty event) {
+        if (event.getHand() == InteractionHand.MAIN_HAND) {
+            return; // Only handle main hand interactions
         }
 
-        Level level = player.level;
+        Player player = (Player) event.getEntity();
+        ItemStack itemStack = player.getItemInHand(event.getHand());
 
-        player.displayClientMessage(Component.literal("Left-clicked!"), true);
+        if (itemStack.getItem() instanceof Katana) {
+            if (!player.level.isClientSide()) {
+                Vec3 lookVec = player.getViewVector(1.0f);
+                Vec3 eyePos = player.getEyePosition(1.0f);
+                Vec3 reachVec = eyePos.add(lookVec.scale(5.0)); // 5 blocks reach
+                AABB aabb = new AABB(eyePos, reachVec).inflate(1.0, 1.0, 1.0);
 
-        Vec3 playerEyePos = player.getEyePosition(1.0f);
-        double range = 5.0; // 5 block range
+                List<LivingEntity> entities = player.level.getEntitiesOfClass(LivingEntity.class, aabb, entity -> entity != player);
+                for (LivingEntity entity : entities) {
+                    if (entity != player && entity.getBoundingBox().intersects(aabb)) {
+                        entity.hurt(DamageSource.playerAttack(player), 5.0f); // 5 damage points
+                    }
+                }
 
-        AABB aabb = new AABB(playerEyePos.subtract(range, range, range), playerEyePos.add(range, range, range));
-        List<LivingEntity> entities = level.getEntitiesOfClass(LivingEntity.class, aabb);
-
-        for (LivingEntity entity : entities) {
-            if (entity != player) {
-                entity.hurt(DamageSource.playerAttack(player), 24.0f);
+                player.level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.PLAYER_ATTACK_STRONG, SoundSource.PLAYERS, 1.0F, 1.0F);
+                player.getCooldowns().addCooldown(this, 10);
             }
         }
     }
-
-    @SubscribeEvent
-    @OnlyIn(Dist.CLIENT)
-    public void onLeftClick(PlayerInteractEvent.LeftClickBlock event) {
-        handleLeftClick(event.getEntity());
-    }
-
-    @SubscribeEvent
-    @OnlyIn(Dist.CLIENT)
-    public void onLeftClickEmpty(PlayerInteractEvent.LeftClickEmpty event) {
-        handleLeftClick(event.getEntity());
-    }
-
-    @SubscribeEvent
-    @OnlyIn(Dist.CLIENT)
-    public void onLeftClickEntity(PlayerInteractEvent.EntityInteract event) {
-        if (event.getHand() == InteractionHand.MAIN_HAND) {
-            handleLeftClick(event.getEntity());
-        }
-    }
 }
-
