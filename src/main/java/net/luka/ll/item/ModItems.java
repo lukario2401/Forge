@@ -3,6 +3,7 @@ package net.luka.ll.item;
 import net.luka.ll.Ll;
 import net.luka.ll.item.custom.DashItem;
 import net.luka.ll.item.custom.EightBallItem;
+import net.luka.ll.item.custom.Katana;
 import net.luka.ll.item.custom.StrengthTotemItem;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -26,6 +27,9 @@ public class ModItems {
         null,  // Tag for the blocks this material can mine
         () -> Ingredient.of(Items.NETHERITE_INGOT)  // Repair ingredient
         );
+
+        public static final RegistryObject<Item> KATANA = ITEMS.register("katana",
+    () -> new Katana(new Item.Properties().tab(ModCreativeModeTab.Custom_tab).stacksTo(1)));
 
     public static final RegistryObject<Item> DASH = ITEMS.register("dash",
     () -> new DashItem(new Item.Properties().tab(ModCreativeModeTab.Custom_tab).stacksTo(1)));
