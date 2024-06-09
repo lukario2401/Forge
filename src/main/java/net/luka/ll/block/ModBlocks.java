@@ -1,6 +1,7 @@
 package net.luka.ll.block;
 
 import net.luka.ll.Ll;
+import net.luka.ll.block.custom.JumpBock;
 import net.luka.ll.item.ModCreativeModeTab;
 import net.luka.ll.item.ModItems;
 import net.minecraft.util.valueproviders.UniformInt;
@@ -31,7 +32,6 @@ public class ModBlocks {
                     .strength(6f).requiresCorrectToolForDrops(),
                     UniformInt.of(3, 7)), ModCreativeModeTab.Custom_tab);
 
-
     public static final RegistryObject<Block> ZIRCON_BLOCK = registerBlock("zircon_block",
             () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
                     .strength(6f).requiresCorrectToolForDrops()), ModCreativeModeTab.Custom_tab);
@@ -46,7 +46,9 @@ public class ModBlocks {
                     .strength(6f).requiresCorrectToolForDrops(), UniformInt.of(3,7)
             ), ModCreativeModeTab.Custom_tab);
 
-
+    public static final RegistryObject<Block> JUMP_BLOCK = registerBlock("jump_block",
+            () -> new JumpBock(BlockBehaviour.Properties.of(Material.STONE)
+                    .strength(6f).requiresCorrectToolForDrops()), ModCreativeModeTab.Custom_tab);
 
 
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block, CreativeModeTab tab){
