@@ -40,25 +40,30 @@ public class Katana extends Item {
         return super.use(level, player, hand);
     }
 
+
     private void handleLeftClick(Player player) {
-    Level level = player.level;
+        // Check if the player is holding a Katana in their main hand
+        ItemStack mainHandItem = player.getItemInHand(InteractionHand.MAIN_HAND);
+        if (!(mainHandItem.getItem() instanceof Katana)) {
+            return; // Exit if the player is not holding a Katana
+        }
 
-    player.displayClientMessage(Component.literal("Left-clicked!"), true);
+        Level level = player.level;
 
-    Vec3 playerPos = player.position();
-    double range = 5.0; // 5 block range
+        player.displayClientMessage(Component.literal("Left-clicked!"), true);
 
-    AABB aabb = new AABB(playerPos.subtract(range, range, range), playerPos.add(range, range, range));
-    List<LivingEntity> entities = level.getEntitiesOfClass(LivingEntity.class, aabb);
+        Vec3 playerEyePos = player.getEyePosition(1.0f);
+        double range = 5.0; // 5 block range
 
-    for (LivingEntity entity : entities) {
-        if (entity != player) {
-            entity.hurt(DamageSource.playerAttack(player), 24.0f);
+        AABB aabb = new AABB(playerEyePos.subtract(range, range, range), playerEyePos.add(range, range, range));
+        List<LivingEntity> entities = level.getEntitiesOfClass(LivingEntity.class, aabb);
+
+        for (LivingEntity entity : entities) {
+            if (entity != player) {
+                entity.hurt(DamageSource.playerAttack(player), 24.0f);
+            }
         }
     }
-}
-
-
 
     @SubscribeEvent
     @OnlyIn(Dist.CLIENT)
@@ -80,3 +85,4 @@ public class Katana extends Item {
         }
     }
 }
+
