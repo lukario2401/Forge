@@ -52,7 +52,10 @@ public class DashItem extends Item {
     @Override
     public void appendHoverText(ItemStack itemStack, @Nullable Level level, List<Component> components, TooltipFlag tooltipFlag) {
         if(Screen.hasShiftDown()){
+            components.add(Component.literal("").withStyle(ChatFormatting.DARK_PURPLE));
             components.add(Component.literal("this is a good item to help you move").withStyle(ChatFormatting.DARK_PURPLE));
+            components.add(Component.literal("").withStyle(ChatFormatting.DARK_PURPLE));
+            components.add(Component.literal("use it responsibly").withStyle(ChatFormatting.DARK_PURPLE));
         }else{
             components.add(Component.literal("press [SHIFT] for more").withStyle(ChatFormatting.YELLOW));
         }
