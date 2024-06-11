@@ -31,35 +31,39 @@ public class Katana extends Item {
     public void onLeftClick(PlayerInteractEvent.LeftClickEmpty event) {
         Player player = event.getEntity();
         Level level = player.getCommandSenderWorld();
+        ItemStack heldItem = player.getMainHandItem();
 
-        // Only perform the raycast on the client side
-        if (level.isClientSide()) {
-            Vec3 start = player.getEyePosition(1.0F);
-            Vec3 look = player.getViewVector(1.0F);
-            Vec3 end = start.add(look.scale(20.0)); // 20 block range
+        // Check if the player is holding the Katana
+        if (heldItem.getItem() instanceof Katana) {
+            // Only perform the raycast on the client side
+            if (level.isClientSide()) {
+                Vec3 start = player.getEyePosition(1.0F);
+                Vec3 look = player.getViewVector(1.0F);
+                Vec3 end = start.add(look.scale(20.0)); // 20 block range
 
-            ClipContext context = new ClipContext(start, end, ClipContext.Block.OUTLINE, ClipContext.Fluid.NONE, player);
-            HitResult hitResult = level.clip(context);
+                ClipContext context = new ClipContext(start, end, ClipContext.Block.OUTLINE, ClipContext.Fluid.NONE, player);
+                HitResult hitResult = level.clip(context);
 
-            // Visualize the raycast with particles
-            double stepSize = 0.5;
-            for (double d = 0; d < 20.0; d += stepSize) {
-                Vec3 point = start.add(look.scale(d));
-                level.addParticle(ParticleTypes.CRIT, point.x, point.y, point.z, 0, 0, 0);
+                // Visualize the raycast with particles
+                double stepSize = 0.5;
+                for (double d = 0; d < 20.0; d += stepSize) {
+                    Vec3 point = start.add(look.scale(d));
+                    level.addParticle(ParticleTypes.CRIT, point.x, point.y, point.z, 0, 0, 0);
 
-                // Perform a small raycast at each step to check for entities
-                ClipContext stepContext = new ClipContext(start, point, ClipContext.Block.OUTLINE, ClipContext.Fluid.NONE, player);
-                HitResult stepResult = level.clip(stepContext);
+                    // Perform a small raycast at each step to check for entities
+                    ClipContext stepContext = new ClipContext(start, point, ClipContext.Block.OUTLINE, ClipContext.Fluid.NONE, player);
+                    HitResult stepResult = level.clip(stepContext);
 
-                // Check if the result is an entity hit
-                if (stepResult.getType() == HitResult.Type.ENTITY) {
-                    Entity entity = ((EntityHitResult) stepResult).getEntity();
+                    // Check if the result is an entity hit
+                    if (stepResult.getType() == HitResult.Type.ENTITY) {
+                        Entity entity = ((EntityHitResult) stepResult).getEntity();
 
-                    if (entity instanceof LivingEntity) {
-                        // Deal damage to the entity
-                        entity.hurt(DamageSource.playerAttack(player), 24.0F);
-                        level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.PLAYER_ATTACK_STRONG, SoundSource.PLAYERS, 1.0F, 1.0F);
-                        break; // Stop the raycast after damaging the mob
+                        if (entity instanceof LivingEntity) {
+                            // Deal damage to the entity
+                            entity.hurt(DamageSource.playerAttack(player), 24.0F);
+                            level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.PLAYER_ATTACK_STRONG, SoundSource.PLAYERS, 1.0F, 1.0F);
+                            break; // Stop the raycast after damaging the mob
+                        }
                     }
                 }
             }
