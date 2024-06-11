@@ -16,10 +16,12 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.Vec3;
-import net.minecraft.world.level.ClipContext;
+import net.minecraft.world.phys.AABB;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+
+import java.util.List;
 
 public class Katana extends Item {
     public Katana(Item.Properties properties) {
@@ -41,28 +43,25 @@ public class Katana extends Item {
                 Vec3 look = player.getViewVector(1.0F);
                 Vec3 end = start.add(look.scale(20.0)); // 20 block range
 
-                ClipContext context = new ClipContext(start, end, ClipContext.Block.OUTLINE, ClipContext.Fluid.NONE, player);
-                HitResult hitResult = level.clip(context);
-
-                // Visualize the raycast with particles
-                double stepSize = 0.5;
+                double stepSize = 0.2; // Step size for raycast
                 for (double d = 0; d < 20.0; d += stepSize) {
                     Vec3 point = start.add(look.scale(d));
                     level.addParticle(ParticleTypes.CRIT, point.x, point.y, point.z, 0, 0, 0);
 
-                    // Perform a small raycast at each step to check for entities
-                    ClipContext stepContext = new ClipContext(start, point, ClipContext.Block.OUTLINE, ClipContext.Fluid.NONE, player);
-                    HitResult stepResult = level.clip(stepContext);
+                    // Check for entities within a 0.2 block radius at this point
+                    AABB aabb = new AABB(point.x - 0.1, point.y - 0.1, point.z - 0.1, point.x + 0.1, point.y + 0.1, point.z + 0.1);
+                    List<Entity> entities = level.getEntities(player, aabb, entity -> entity instanceof LivingEntity && entity != player);
 
-                    // Check if the result is an entity hit
-                    if (stepResult.getType() == HitResult.Type.ENTITY) {
-                        Entity entity = ((EntityHitResult) stepResult).getEntity();
+                    if (!entities.isEmpty()) {
+                        for (Entity entity : entities) {
+                            if (entity instanceof LivingEntity) {
+                                // Deal damage to the entity
+                                entity.hurt(DamageSource.playerAttack(player), 24.0F);
+                                level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.PLAYER_ATTACK_STRONG, SoundSource.PLAYERS, 1.0F, 1.0F);
 
-                        if (entity instanceof LivingEntity) {
-                            // Deal damage to the entity
-                            entity.hurt(DamageSource.playerAttack(player), 24.0F);
-                            level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.PLAYER_ATTACK_STRONG, SoundSource.PLAYERS, 1.0F, 1.0F);
-                            break; // Stop the raycast after damaging the mob
+                                // Stop the raycast after damaging the mob
+                                return;
+                            }
                         }
                     }
                 }
