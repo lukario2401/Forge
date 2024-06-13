@@ -1,10 +1,7 @@
 package net.luka.ll.item;
 
 import net.luka.ll.Ll;
-import net.luka.ll.item.custom.DashItem;
-import net.luka.ll.item.custom.EightBallItem;
-import net.luka.ll.item.custom.Katana;
-import net.luka.ll.item.custom.StrengthTotemItem;
+import net.luka.ll.item.custom.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.common.ForgeTier;
@@ -42,6 +39,7 @@ public class ModItems {
 
     public static final RegistryObject<Item> stalinium = ITEMS.register("stalinium",
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.Custom_tab)));
+
     public static final RegistryObject<Item> raw_stalinium = ITEMS.register("raw_stalinium",
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.Custom_tab)));
 
@@ -54,6 +52,9 @@ public class ModItems {
     public static final RegistryObject<Item> ZIRCON_SWORD = ITEMS.register("zircon_sword",
         () -> new SwordItem(ZIRCON_SWORD_TIER, 5, -1.4f,
             new Item.Properties().tab(ModCreativeModeTab.Custom_tab)));
+
+        public static final RegistryObject<Item> DODGE = ITEMS.register("dodge",
+    () -> new DodgeItem(new Item.Properties().tab(ModCreativeModeTab.Custom_tab).stacksTo(1)));
 
     public static void register(IEventBus eventBus){
         ITEMS.register(eventBus);
