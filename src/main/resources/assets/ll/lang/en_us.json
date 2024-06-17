@@ -23,5 +23,6 @@
 
   "itemGroup.lltab": "Custom Items",
 
-  "entity.minecraft.villager.ll.jump_master": "Jump Master"
+  "entity.minecraft.villager.ll.jump_master": "Jump Master",
+  "entity.minecraft.villager.ll.stalinium_trader": "Stalinium Trader"
 }
