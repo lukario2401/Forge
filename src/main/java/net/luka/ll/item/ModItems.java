@@ -2,7 +2,10 @@ package net.luka.ll.item;
 
 import net.luka.ll.Ll;
 import net.luka.ll.block.ModBlocks;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.luka.ll.item.custom.*;
+import net.minecraft.client.renderer.EffectInstance;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -61,8 +64,11 @@ public class ModItems {
                 public static final RegistryObject<Item> BLUEBERRY_SEEDS = ITEMS.register("blueberry_seeds",
     () -> new ItemNameBlockItem(ModBlocks.BLUEBERRY_CROP.get(),new Item.Properties().tab(ModCreativeModeTab.Custom_tab)));
 
-                        public static final RegistryObject<Item> BLUEBERRY = ITEMS.register("blueberry",
-    () -> new Item(new Item.Properties().tab(ModCreativeModeTab.Custom_tab).food(new FoodProperties.Builder().nutrition(2).saturationMod(2f).fast().build())));
+public static final RegistryObject<Item> BLUEBERRY = ITEMS.register("blueberry",
+    () -> new Item(new Item.Properties().tab(ModCreativeModeTab.Custom_tab).food(new FoodProperties.Builder().nutrition(2).saturationMod(2f).fast()
+            .effect(() -> new MobEffectInstance(MobEffects.SATURATION, 200), 1.0F).build())));
+
+
 
     public static void register(IEventBus eventBus){
         ITEMS.register(eventBus);

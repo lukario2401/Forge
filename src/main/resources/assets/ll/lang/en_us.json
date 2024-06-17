@@ -21,5 +21,7 @@
   "block.ll.deepslate_zircon_ore": "Deepslate Zircon ore",
   "block.ll.blueberry_crop": "Blueberry Crop",
 
-  "itemGroup.lltab": "Custom Items"
+  "itemGroup.lltab": "Custom Items",
+
+  "entity.minecraft.villager.ll.jump_master": "Jump Master"
 }
