@@ -1,7 +1,9 @@
 package net.luka.ll.item;
 
 import net.luka.ll.Ll;
+import net.luka.ll.block.ModBlocks;
 import net.luka.ll.item.custom.*;
+import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.common.ForgeTier;
@@ -55,6 +57,12 @@ public class ModItems {
 
         public static final RegistryObject<Item> DODGE = ITEMS.register("dodge",
     () -> new DodgeItem(new Item.Properties().tab(ModCreativeModeTab.Custom_tab).stacksTo(1)));
+
+                public static final RegistryObject<Item> BLUEBERRY_SEEDS = ITEMS.register("blueberry_seeds",
+    () -> new ItemNameBlockItem(ModBlocks.BLUEBERRY_CROP.get(),new Item.Properties().tab(ModCreativeModeTab.Custom_tab)));
+
+                        public static final RegistryObject<Item> BLUEBERRY = ITEMS.register("blueberry",
+    () -> new Item(new Item.Properties().tab(ModCreativeModeTab.Custom_tab).food(new FoodProperties.Builder().nutrition(2).saturationMod(2f).fast().build())));
 
     public static void register(IEventBus eventBus){
         ITEMS.register(eventBus);

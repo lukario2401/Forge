@@ -9,6 +9,8 @@
   "item.ll.raw_zircon": "Raw Zircon",
   "item.ll.stalinium": "Stalinium",
   "item.ll.raw_stalinium": "Raw Stalinium",
+  "item.ll.blueberry": "Blueberry",
+  "item.ll.blueberry_seeds": "Blueberry Seeds",
 
   "block.ll.zircon_lamp": "Zircon Lamp",
   "block.ll.zircon_block": "Block of Zircon",
@@ -17,6 +19,7 @@
   "block.ll.stalinium_block": "Block of Stalinium",
   "block.ll.stalinium_ore": "Stalinium Ore",
   "block.ll.deepslate_zircon_ore": "Deepslate Zircon ore",
+  "block.ll.blueberry_crop": "Blueberry Crop",
 
   "itemGroup.lltab": "Custom Items"
 }

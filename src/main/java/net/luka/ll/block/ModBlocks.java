@@ -1,6 +1,7 @@
 package net.luka.ll.block;
 
 import net.luka.ll.Ll;
+import net.luka.ll.block.custom.BlueberryCropBlock;
 import net.luka.ll.block.custom.JumpBock;
 import net.luka.ll.block.custom.ZirconLampBlock;
 import net.luka.ll.item.ModCreativeModeTab;
@@ -10,6 +11,7 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.DropExperienceBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.Material;
@@ -61,6 +63,9 @@ public class ModBlocks {
         registerBlockItem(name,toReturn,tab);
         return toReturn;
     }
+
+        public static final RegistryObject<Block> BLUEBERRY_CROP = BLOCKS.register("blueberry_crop",
+            () -> new BlueberryCropBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT)));
 
     private static <T extends Block> RegistryObject<Item> registerBlockItem(String name, RegistryObject<T> block, CreativeModeTab tab){
         return ModItems.ITEMS.register(name, () -> new BlockItem(block.get(),new Item.Properties().tab(tab)));
