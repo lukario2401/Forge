@@ -24,5 +24,8 @@
   "itemGroup.lltab": "Custom Items",
 
   "entity.minecraft.villager.ll.jump_master": "Jump Master",
-  "entity.minecraft.villager.ll.stalinium_trader": "Stalinium Trader"
+  "entity.minecraft.villager.ll.stalinium_trader": "Stalinium Trader",
+
+  "key.category.ll.lll": "ll mod",
+  "key.ll.dink_water": "Drink Water"
 }
