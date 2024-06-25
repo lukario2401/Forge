@@ -27,5 +27,7 @@
   "entity.minecraft.villager.ll.stalinium_trader": "Stalinium Trader",
 
   "key.category.ll.lll": "ll mod",
-  "key.ll.dink_water": "Drink Water"
+  "key.ll.dink_water": "Drink Water",
+  "message.ll.drink_water": "Drinking Water",
+  "message.ll.no_water": "No Water Nearby"
 }

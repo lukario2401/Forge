@@ -1,6 +1,7 @@
 package net.luka.ll.networking;
 
 import net.luka.ll.Ll;
+import net.luka.ll.networking.packet.DrinkWaterC2SPacket;
 import net.luka.ll.networking.packet.ExampleC2SPacket;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
@@ -32,6 +33,13 @@ public class ModMessages {
                 .encoder(ExampleC2SPacket::toBytes)
                 .consumerMainThread(ExampleC2SPacket::handle)
                 .add();
+
+            net.messageBuilder(DrinkWaterC2SPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
+                .decoder(DrinkWaterC2SPacket::new)
+                .encoder(DrinkWaterC2SPacket::toBytes)
+                .consumerMainThread(DrinkWaterC2SPacket::handle)
+                .add();
+
 
 
     }
