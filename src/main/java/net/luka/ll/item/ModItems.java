@@ -65,7 +65,7 @@ public class ModItems {
     () -> new ItemNameBlockItem(ModBlocks.BLUEBERRY_CROP.get(),new Item.Properties().tab(ModCreativeModeTab.Custom_tab)));
 
 public static final RegistryObject<Item> BLUEBERRY = ITEMS.register("blueberry",
-    () -> new Item(new Item.Properties().tab(ModCreativeModeTab.Custom_tab).food(new FoodProperties.Builder().nutrition(2).saturationMod(2f).fast()
+    () -> new Item(new Item.Properties().tab(ModCreativeModeTab.Custom_tab).food(new FoodProperties.Builder().alwaysEat().nutrition(2).saturationMod(2f).fast()
             .effect(() -> new MobEffectInstance(MobEffects.SATURATION, 200), 1.0F).build())));
 
 
