@@ -4,6 +4,7 @@ import com.mojang.logging.LogUtils;
 import net.luka.ll.block.ModBlocks;
 import net.luka.ll.commands.InvincibilityCommand;
 import net.luka.ll.item.ModItems;
+import net.luka.ll.networking.ModMessages;
 import net.luka.ll.villager.ModVillagers;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
@@ -44,8 +45,10 @@ public class Ll {
 
     private void commonSetup(final FMLCommonSetupEvent event) {
         event.enqueueWork(()->{
+           ModMessages.register();
            ModVillagers.registerPOIs();
         });
+
     }
 
     // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent

@@ -1,6 +1,8 @@
 package net.luka.ll.event;
 
 import net.luka.ll.Ll;
+import net.luka.ll.networking.ModMessages;
+import net.luka.ll.networking.packet.ExampleC2SPacket;
 import net.luka.ll.util.KeyBinding;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
@@ -17,7 +19,8 @@ public class ClientEvents {
         @SubscribeEvent
         public static void onKeyInput(InputEvent.Key event) {
             if(KeyBinding.DRINKING_KEY.consumeClick()) {
-                Minecraft.getInstance().player.sendSystemMessage(Component.literal("Pressed a Key!"));
+//                Minecraft.getInstance().player.sendSystemMessage(Component.literal("Pressed a Key!"));
+                ModMessages.sendToServer(new ExampleC2SPacket());
             }
         }
     }
